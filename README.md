@@ -6,6 +6,6 @@
 
 -------
 
-[![네이버클라우드](./202209290853594643582.png "ncloud")](https://www.navercloudcorp.com/){:target="_blank"} AIaaS 개발자 과정 1기<br>
+[![네이버클라우드](./202209290853594643582.png "ncloud")](https://www.navercloudcorp.com/) AIaaS 개발자 과정 1기<br>
 
 ---
