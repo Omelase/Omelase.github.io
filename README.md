@@ -2,5 +2,5 @@
 ------------
 ## 안녕하세요! (##)
 
-[![네이버클라우드](./202209290853594643582.png "ncloud")](https://www.navercloudcorp.com/){:target="_blank"}
+[![네이버클라우드](./202209290853594643584.png "ncloud")](https://www.navercloudcorp.com/){:target="_blank"}
 AIaaS 개발자 과정 1기
