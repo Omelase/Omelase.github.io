@@ -3,7 +3,7 @@ layout: post
 title: 마크다운 (Markdown)
 subtitle: Each post also has a subtitle
 categories: markdown
-tags: [test]
+tags: []
 ---
 
 >![마크다운](https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Markdown-mark.svg/300px-Markdown-mark.svg.png)<br>

@@ -138,8 +138,8 @@ yat:
 # Page default value
 # defaults:
 #   home:
-#     heading: "Your awesome heading"
-#     subheading: "Your awesome subheading"
+#     heading: "초보 개발자의 개발 일지"
+#     subheading: "개발자가 되고 싶어요"
 #     banner: "Your image url"
 
 # Banner default settings
@@ -170,8 +170,8 @@ yat:
 
 # Gitment comments
 # gitment:
-#   username: "Your GitHub username"
-#   repo: "The repo to store comments"
+#   username: "Omelase"
+#   repo: "omelase.github.io"
 #   client_id: "Your client ID"
 #   client_secret: "Your client secret"
 #   redirect_uri: "Your redirect url"   # If you use a custom domain name
