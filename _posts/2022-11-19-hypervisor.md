@@ -19,3 +19,10 @@ Xen, ESX server, TRANGO, Hyper-V 등이 있다.
 type2는 H/W에 Host OS가 있고 그 위의 Hypervisor가 Guest OS를 실행한다.<br>
 type2 S/W로는
 Virtual box, VMware, Parallels 등이 있다. 
+
+그러나 Hypervisor만으로는 VM 생성이 번거롭다.
+VM을 생성하고, VM에 OS를 설치하고, 일일이 설정해줘야 하기 때문이다.
+
+그렇게 해서 만들어진 것이 Vagrant이다.
+Vagrant는 VM 생성 과정의 반복 작업을 자동화해주는 VM 관리 소프트웨어다.
+Vagrant가 있으면 명령어를 통해 손쉽게 VM 생성 및 Guest OS 설치를 할 수 있게 된다.
