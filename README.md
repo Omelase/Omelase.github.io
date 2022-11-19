@@ -6,7 +6,8 @@
 
 -------
 
-[![네이버클라우드](./202209290853594643582.png "ncloud")](https://www.navercloudcorp.com/) AIaaS 개발자 과정 1기<br>
+<a href = "https://www.navercloudcorp.com/" target = "_blank">
+        <img src = "./202209290853594643582.png" alt = "ncloud"/></a> AIaaS 개발자 과정 1기<br>
 
 ---
 
