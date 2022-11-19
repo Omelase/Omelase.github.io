@@ -2,7 +2,7 @@
 layout: post
 title: git 설치하기
 categories: 컴퓨터기초
-tags: [ncloud, git]
+tags: [ncloud, git, basic]
 ---
 
 #git이란? <br>

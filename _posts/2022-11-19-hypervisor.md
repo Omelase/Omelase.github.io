@@ -2,7 +2,7 @@
 layout: post
 title: 하이퍼바이저 (Hypervisor)
 categories: 컴퓨터기초
-tags: [ncloud]
+tags: [ncloud, basic]
 ---
 
 Hypervisor는 Host OS에서 다수의 Guest OS를 동시에 실행하기 위한 논리적 플랫폼이다.<br>
