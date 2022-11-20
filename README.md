@@ -59,3 +59,5 @@ git add .<br>
 git commit -m "기록 내용"<br>
 18. 수정 내용 remote repository에 push<br>
 git push<br>
+
+centos test
