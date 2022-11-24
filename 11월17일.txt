@@ -1,0 +1,78 @@
+명령어에 대한 정보 확인 법
+명령어 --help : 보고있는 화면에서 빠져나가지않고 간단한 메뉴얼 출력
+man 명령어 : 상세페이지로 이동해서 상세정보 출력
+
+11.17 목
+
+1. 구글 크롬 설치
+2. 구글 동기화
+3. 구글 미트 생성 및 공유
+4. VScode 설치 및 환경 설정
+5. 네이버 개발자 폰트 다운 (한글과 영어 열맞추기)
+
+https://meet.google.com/vpv-ojws-dpr
+
+네카라쿠배는 반드시 거치자
+프론트, 백엔드 다 경험할 수 있는 SI업체에 입사 후 네카라쿠배 입사가 베스트
+
+랜더링 : 이쁘게 출력하는 것
+
+크롬은 애플의 사파리에 들어있는 webkit 엔진 (리눅스브라우저에서 가져옴, HTML 렌더링 엔진)을 가져왔고 현재는 다른 상태
+크롬의 HTML 렌더링 엔진인 크로미움은 오픈소스로 공개
+크로미움 버전을 업그레이드 할때마다 크롬에 적용하고 있음
+MS의 엣지가 크로미움으로 제작
+
+VScode : 자바스크립트로 만듦 (크로미움 브라우저 + 일렉트론 (자바스크립트 라이브러리)) -> 멀티 operating system 지원
+
+UI : 버튼 존재
+UX :  버튼이 사용자입장에서 어디 위치하는지
+
+과제 : 앞으로 경력 유지하고 누군지 알아볼 수 있도록 git에서 홈피만들기
+
+git add : 변경된 점을 추가 (저장 전에 스테이징 영역에 변경점을 모아놓음)
+	. : 현재 디렉토리 내 모든 변경점 추가
+	-A : 상위 디렉토리의 변경점까지 모두 추가 (최상위 디렉토리에서 add . 하는 것과 같음)
+
+git commit : 로컬 리포지토리 (hdd)에 리포짓 (저장)
+
+git pull : 리모트 리포지토리 (원격저장소)의 파일을 로컬 리포지토리에 다운로드
+
+git push : 로컬 리포지토리의 파일을 리모트 리포지토리에 업로드
+
+main = master slave
+
+xml, json, yml : 컨텐츠를 표현하는 확장자 좌->우 순으로 발전
+
+yml의 정식 명칭은 yaml
+
+~/ : 사용자 홈폴더. 학원 컴에선 사용자/bitcamp
+
+git의 원리
+git clone https://github.com/username.github.io test(생략하면 repo.이름으로 폴더 생성)
+github.com의 repo.를 내 pc에 clone
+~/git/username.github.io에 repo. 생김 (.git 파일이 로컬 리포지토리)
+~/git/username.github.io는 작업폴더
+readme.md, config,yml은 작업파일
+작업파일을 .git폴더에 commit한 다음 push하는 것
+
+1. git add 대상파일/폴더 : 작업폴더에 staged(백업대상명단)을 작성
+2. git commit -m 백업내용 : .git폴더에 대상을 snapshot(백업)
+3. git push 서버측브랜치를 가리키는 별명 로컬브랜치명 : github.com에 업로드
+(서버측브랜치를 가리키는 별명은 기본 origin으로 설정됨, 로컬브랜치명은 main) (clone한 경우 생략가능)
+
+md 확장자의 의미 : 마크다운 (마크업 언어 (HTML)의 쉬운 버전)
+github 테마를 바꾸기
+
+git clone https://github.com/Omelase/Omelase.github.io
+cd Omelase.github.io
+git add .
+git status
+git commit -m "초기 자기 소개 화면"
+git push
+
+commit된 메시지 수정하기
+git commit --amend -m "바꿀 메시지"
+만약 push까지 했다면?
+위 과정 수행 후 git push --force 브랜치 이름(origin main)
+
+명령프롬프트에서 폴더 첫글자만 입력하고 탭누르면 존재하는 폴더이름 자동 입력됨

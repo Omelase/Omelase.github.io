@@ -1,0 +1,227 @@
+vagrant project vs virtual box
+
+사용자 홈폴더에 virtualbox vms 폴더 접속 후 각 폴더에 접속하면 (각 폴더는 vm폴더임)
+.vmdk 파일이 버추얼박스 가상 디스크임
+
+vagrant up하면 vm폴더가 생성됨
+버추얼박스에서 실행 중인 버추얼머신 = vm폴더 : vagrant project에 따라 생성된 vm
+vagrantfile = vagrant project : 가상머신을 만들고 초기화시키는 설정 정보가 들어있는 프로젝트 (설계도)
+따라서, vagrant project 삭제해도 vm은 그대로 살아있음
+
+홈폴더에서 vagrant global-status : 설치된 vm 상태알려줌
+
+vm 삭제
+
+vagrant project폴더 들어가서 삭제
+
+cd vm-projects
+cd centos
+vagrant destroy
+y
+cd ..
+폴더 삭제
+
+
+vcs (version controll system : 버전관리시스템)의 종류
+
+rcs (revision controll system)
+로컬 버전 관리 시스템
+간단한 db를 이용하여 파일 변경내역(patch set)을 관리
+
+cvs (Concurrent Versions System)
+중앙집중방식
+
+서버 <-----> 로컬
+repo -------> 파일
+      checkout 
+      <-------
+       checkin = commit
+
+commit(checkin) : 파일 전체를 서버에 전송 (오버헤드 발생 : 네트워크 과소비 - 변경내역 외 기존내역까지 전송하므로)
+
+중앙집중방식 : 서버에서 변경내역 관리하므로 서버에서 문제 발생하면 변경내역(history) 모두 잃음
+로컬은 각 파일의 변경내역 중 마지막 하나의 스냅샷만 유지
+스냅샷 : 특정 시점의 파일 버전을 기록한 것
+
+svn (subversion)
+중앙집중방식
+cvs의 오버헤드 문제를 해결
+파일의 변경된 부분만 서버에 전송하므로 cvs보다 오버헤드 적다
+하지만 중앙집중방식의 단점은 그대로
+
+git
+저장소를 클라이언트에 분산복제 : 서버에 문제 발생해도 클라이언트에 분산복제된 repo를 사용해 원상태로 복원가능
+서버 <-----> 로컬
+repo -------> repo
+       clone 
+      <-------
+       push
+
+변경 -> commit -> 로컬repo에 저장 -> push -> 서버repo에 저장
+
+다른 사람과 공유하고 싶을 때 push하면 됨 (네트워크 오버헤드가 적다)
+
+bitcamp-study/.git          bitcamp-study/ (.git을 제외한 나머지 영역)
+로컬 repo --------------> working directory
+a.txt ver.1 최신스냅샷꺼냄 a.txt 1 -> 2 : modified (파일이 변경됐지만 로컬에 저장은 안 한 상태)
+b.txt ver.1,2,3                b.txt 3 : committed 
+c.txt ver.1,2                   c.txt 2 -> 3 : staged (저장소의 백업 대상으로 선정된 상태)
+
+
+
+modified : working directory에 저장
+
+staged : staging area (.git/index파일)에 저장
+
+committed : .git directory에 저장
+
+committed -변경-> modified -git add-> staged -git commit-> committed
+
+@ : at
+
+git config usr.email 등록해야 잔디심어짐
+- : 옵션에 짧은 이름 추가할때 (git config -l)
+-- : 옵션에 긴 이름 추가할때 (git config --list)
+
+host1 vm에서
+git config --global user.name "omelase"
+git config --global user.email "11chan11@naver.com"
+git config --system -l
+pwd
+sudo yum install tree (탐색기 라이브러리)
+tree
+cd git
+ls
+mkdir bitcamp-ncp (git 로컬저장소로 사용할 디렉토리 생성)
+cd bitcamp-ncp
+git init (.git폴더 생성)
+ls -al (위아래 목록형식으로 숨겨진 폴더까지 출력) (유닉스에서 .으로 시작하는 폴더는 숨김폴더)
+vi .gitignore
+
+# .gitignore
+esc + shift + :
+w
+esc + shift + :
+q
+cat .ignore
+sudo yum install nano
+
+
+.gitignore 파일 : git저장소에 보관하지 않을 대상을 지정. 주로 도구를 실행할 때마다 자동 생성하는 파일 및 폴더
+ex) .class파일, .exe파일, bin폴더, build폴더 등
+
+.gitignore 파일 생성법
+기존 프로젝트 저장소에 설정된 파일을 가져와서 편집
+.gitignore파일을 자동생성해주는 사이트 이용
+(gitignore.io)
+windows, macos, linux, gradle, java, visualstudiocode, eclipse 입력해 백업 대상에서 제외
+통상적으로 회사에서 기존 사용하는 .gitignore 파일 복붙하면 됨
+복사후
+nano .gitignore
+붙여넣기
+ctrl o
+enter
+ctrl x
+cat .ignore
+
+nano a.txt
+1111입력 후 저장하고 나옴
+
+git status : 작업파일의 상태 --short옵션주면 간략화
+untracked files : 추적되지 않은 파일목록 (한번도 백업된 적없는 파일, main 트랙에 한번도 등록된 적없는 파일, 추적하고 싶으면 git add)
+
+저장소는 변경내역의 기본 트랙이 존재한다.
+그것이 main이라는 트랙
+main = master
+
+git add .gitignore
+git status --short
+
+M_ (staging area)(working directory)
+? : untracked
+A : 새로추가돼 staged된 상태 (staging area에만 뜸)
+M : modified
+커밋하면 staging area의 목록 사라짐
+
+.git에서 특정 시점 스냅샷을 working directory에 꺼내면 기존 파일 사라지고 그 당시 버전으로 리뉴얼
+
+git log
+
+데이터의 크기가 커지면 비교횟수도 많아짐 -> 속도가 느려짐
+데이터를 알고리즘에 따라 데이터 식별 id 뽑아냄 (16byte~256byte)
+최대 256번만 비교하면 됨
+hash값 : 각 commit을 구분하기 위한 식별자 (데이터의 id를 구분하기 위함)
+hash 코드 : hash 알고리즘(id같을 확률적음)에 따라 연산한 결과 값 (데이터의 크기에 상관없이 256bit, 512bit, 1024bit 등의 정수 값)
+
+데이터 식별id = 디지털 지문
+
+hash알고리즘의 대표알아두기
+md4
+md5
+sha-1
+sha-256
+sha-512
+
+디지털 지문 사용 예시
+1. 파일 공유 및 분산 다운로드
+파일명은 다르지만, 같은 파일이라면 데이터가 같다 -> 해시코드가 같다
+똑같은 파일을 누가 가지고 있는지 알아낼 수 있다
+서로 다른 사람들에게 각 조각을 다운받아 조립
+토렌트
+2. 파일 검증
+원본 서버에서 다운 속도느리면 통신속도빠른 다른 서버에서 다운받을 때
+다운받은 후 원본과 같은지 위변조는 없는지 검증하기 위해 원본 서버에서 계산한 해시 값을 공지하여
+pc에 다운받은 파일을 계산한 해시 값과 비교할 수 있음 ex) pgp, sha-512
+
+certutil -hashfile 파일이름 SHA512
+입력 후 나온 해시값을 인터넷 검색
+
+즉, 데이터구분, 데이터 위변조 검사할 때 사용
+git도 이 알고리즘 사용
+따라서 커밋한 이후에 변경 내용을 바꿀 수 없다
+git log 치면 commit 옆에 있는 코드가 해시코드
+스페이스누르면 더 예전 것나오고 q누르면 나가기
+
+git log -p -2 : 최신 2개 커밋만 보기, 자세히 나옴
+
+git log --oneline : 1줄로 나옴. 해시코드가 앞 7자리만 나옴.
+git log --oneline --graph --all : 모든 커밋 1줄로 그래프화
+
+로컬과 서버저장소연결 방법
+서버에 리포지토리 만든 후
+git remote add 리포지토리 별명(기본은 origin) 리포지토리 주소
+git remote로 확인
+git remote show origin쓰면 상세정보
+git pull 별명(origon) 브랜치명(main)
+vi에디터 접속되면
+esc + : + wq
+ls로 확인
+git config --global push.default simple : clone쓰면 해당사항없음. 새 로컬만들고 리모트와 매칭시킬 때 초기설정
+git add .
+git commit -m "7" (커밋단계에서 브랜치 생성)
+git branch -m main (브랜치명을  main으로 바꿈 (리모트와 같게끔))
+git push --set-upstream origin main :  새 로컬만들 때 초기설정
+유저명, 토큰 입력
+
+다시 정리
+git config --global user.name "omelase"
+git config --global user.email "11chan11@naver.com"
+mkdir git
+cd git
+mkdir bitcamp-ncp
+cd bitcamp-ncp
+git init (local repo 생성)
+vi .gitignore
+gitignore.io에서 제외할 프로그램 목록 작성 후 복붙
+github.com에서 remote repo 생성
+git remote repo별명 repo주소
+git pull repo별명 remote repo브랜치명
+git config --global push.default simple
+git add .
+git commit -m "커밋명"
+git branch -m local repo브랜치명 (remote repo브랜치명과 통일)
+git push --set-upstream repo별명 repo브랜치명
+유저네임, 토큰 입력
+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
+
+
