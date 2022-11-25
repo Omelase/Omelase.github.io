@@ -33,7 +33,7 @@ description: >- # this means to ignore newlines until "baseurl:"
   email : 11chan11@naver.com
 
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
+url: "https://Omelase.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 favicon: "" # the favicon for your site
 
 # Yat date format
