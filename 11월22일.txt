@@ -1,0 +1,260 @@
+less 파일의 내용을 한화면에. 자유 스크롤 가능. 나가려면 q키 눌러야 함
+
+touch 파일명 : 파일생성
+
+ls -al
+
+.은 현재 디렉토리 링크
+..은 상위 디렉토리 링크
+
+파일 구조
+ls -l 명령어로 파일 목록 출력했을 때 보이는 화면
+형식: {파일유형} : {파일권한} : {링크수} : {소유 계정} : {그룹명} : {파일크기} : {마지막 변경 일자} : {파일명}
+ex> d : rwxr-xr-x. : 2 : root : root : 4096 : Feb 3 13:48 : Desktop
+
+파일 유형
+-: 파일
+d: 디렉토리
+b: 블록 디바이스
+c: 문자 디바이스
+l: 링크
+
+허가권
+r: 읽기 허가- 파일 내용을 읽을 수 있는지 결정
+w: 쓰기 허가- 파일을 작성하거나 지울 수 있는지 결정
+x: 실행 허가- 파일을 실행할 수 있는지 결정
+
+user는 사용자 계정 본인
+group은 사용자 계정이 속한 그룹에 있는 계정
+other는 본인도 아니고 그룹에 속한 계정도 아닌 계정들이다. 
+
+ex> d rwxr-xr-x. 2 root root 4096 Feb 3 13:48 Desktop
+    - rwxr-xr-x: 유저는 읽고 쓰고 실행(rwx)할 수 있는 권한을 가지고 있으며 
+그룹은 읽고 실행(r-x)할 수 있는 권한을 가지고 있고 
+그룹을 제외한 타인들은 읽고 실행(r-x)할 수 있는 권한을 가지고 있다는 의미이다.
+
+파일이나 디렉토리 자체도
+자기가 소속된 부모 디렉토리에 대한 기록이 있음
+따라서 파일크기는 디렉토리가 누구를 품고 있는지 정보를 기록한 크기
+
+.gitignore 목록에 있는 파일명에 해당하는 디렉토리는
+tree하면 보이지만
+git status해도 보이지 않음
+
+rm -rf 디렉토리명 : 하위디렉토리까지 모두 강제제거
+
+rm *bak : 뒤가 bak으로 끝나는 파일 삭제
+
+git checkout 파일명 : working directory의 modified 상태 파일을 unmodified 상태로 되돌림
+staged 됐다면 - staged 상태로 되돌림 (add로 백업한 상태)
+staged 안 됐다면 - 최종 커밋 버전으로 되돌림
+
+cat 파일명 : 텍스트 파일을 출력
+
+git rm : staging area에 올라간 상태에선 지울 수 없음. 커밋하던가 워킹 디렉토리에 있던가
+
+HEAD : 가장 최신 커밋된 현재 작업 브랜치 및 버전을 가리킴
+
+git status : 파일의 현재상태 출력
+
+git reset HEAD 파일명 : 무대에서 내려오게 함 워킹디렉에서 modified된건 그대로
+
+실수로 add했을 때 기존 커밋상태로 되돌리는 법
+1) git reset HEAD 파일명 : staged ->modified
+2) git checkout 파일명 : modified -> unmodified
+
+
+git remote -v : 오리진이 어디를 가리키는지 모를 때 주소를 보여줌
+
+git remote show origin : 오리진에 대한 정보
+
+git diff : 파일의 변경 내용을 비교
+
+git log --oneline --graph --all
+
+
+host2에서
+sudo yum install http://opensource.wandisco.com/centos/7/git/x86_64/wandisco-git-release-7-1.noarch.rpm
+sudo yum remove git
+sudo yum install git
+git --version
+cd git
+git clone https://github.com/omelase/bitcamp-ncp
+cd bitcamp-ncp
+git log --oneline --graph --all (로컬2_main HEAD -> 11, 서버_main HEAD -> 11)
+cat a.txt
+
+host1에서
+nano a.txt
+git add .
+git commit -m "12"
+git log --oneline --graph --all (로컬1_main HEAD -> 12, 서버_main HEAD ->11)
+git push
+git log --oneline --graph --all (로컬1_main HEAD -> 12, 서버_main HEAD ->12)
+
+host2에서
+git pull
+git log --oneline --graph --all (로컬2_main HEAD -> 12, 서버_main HEAD ->12)
+
+host1에서
+nano a.txt
+git add .
+git commit -m "13"
+git push
+git log --oneline --graph --all (로컬1_main HEAD -> 13, 서버_main HEAD ->13)
+
+host2에서
+git fetch : 서버에서 받아오는 것만
+git log --oneline --graph --all (로컬2_main HEAD -> 12, 서버_main HEAD ->13)
+git merge : Fast-foward란? 로컬의 이전 버전이 서버의 버전 순서와 같은 경우 합치기 쉬움. 그대로 이어 붙이고 HEAD를 마지막 버전으로 이동시키면 됨. fetch 후 단순 merge하면 됨.
+git log --oneline --graph --all (로컬2_main HEAD -> 13, 서버_main HEAD ->13)
+
+host1에서
+nano a.txt
+git add .
+git commit -m "14"
+git push
+git log --oneline --graph --all (로컬1_main HEAD -> 14, 서버_main HEAD ->14)
+nano a.txt
+git add .
+git commit -m "15"
+git push
+git log --oneline --graph --all (로컬1_main HEAD -> 15, 서버_main HEAD ->15)
+nano a.txt
+git add .
+git commit -m "16"
+git push
+git log --oneline --graph --all (로컬1_main HEAD -> 16, 서버_main HEAD ->16)
+
+host2에서
+git fetch
+git log --oneline --graph --all (로컬2_main HEAD -> 13, 서버_main HEAD ->16)
+git merge
+git log --oneline --graph --all (로컬2_main HEAD -> 16, 서버_main HEAD ->16)
+
+host1에서
+nano b.txt
+git add .
+git commit -m "17"
+nano b.txt
+git add .
+git commit -m "18"
+(팀프로젝트할 땐 버그없는 기능 개발할 때마다 커밋하고 집갈때만 푸시하면 됨)
+git log --oneline --graph --all (로컬1_main HEAD -> 18, 서버_main HEAD ->16)
+git push
+git log --oneline --graph --all (로컬1_main HEAD -> 18, 서버_main HEAD ->18)
+
+host2에서
+sudo yum install nano -y
+nano a.txt
+git add .
+git commit -m "19"
+nano a.txt
+git add .
+git commit -m "20"
+git push (거부당함)
+git log --oneline --graph --all (로컬2_main HEAD -> 20, 서버_main HEAD ->16)
+git fetch
+git log --oneline --graph --all (로컬2_main HEAD -> 20, 서버_main HEAD ->18)
+git merge (충돌일어나므로 왜 머지하는지 사유서 적어야함. esc누르고 dd로 다 지움. esc누르고 a로 insert모드. 21작성하고 :wq로 저장후 끝내기)
+(겹치는 파일없으면 머지됨)
+git log --oneline --graph --all (로컬2_main HEAD -> 21, 서버_main HEAD ->18)
+git push
+git log --oneline --graph --all (로컬2_main HEAD -> 21, 서버_main HEAD ->21)
+
+윈도우에서
+git client 검색 후 소스트리 다운
+git clone https://github.com/omelase/bitcamp-ncp
+cd bitcamp-ncp
+git pull
+소스트리 확인
+(팀프로젝트할 땐 메인 브랜치 사용x, 따로 브랜치만든 후 커밋)
+
+host1에서
+git pull
+git log --oneline --graph --all (로컬1_main HEAD -> 21, 서버_main HEAD -> 21)
+nano a.txt (host1=>xxx)
+git push (로컬1에 커밋 안 됐으므로 업데이트할 것 없음)
+git add .
+git commit -m "22"
+git push
+git log --oneline --graph --all (로컬1_main HEAD -> 22, 서버_main HEAD -> 22)
+
+host2에서
+nano a.txt (host2=>yyy)
+git log --oneline --graph --all (로컬2_main HEAD -> 21, 서버_main HEAD -> 21)
+git pull (에러 : 너의 로컬의 a.txt이 변경중에 있다. 커밋하거나 취소해라)
+git log --oneline --graph --all (로컬2_main HEAD -> 21, 서버_main HEAD -> 22)
+git add
+git commit -m "23"
+git log --oneline --graph --all (로컬2_main HEAD -> 23, 서버_main HEAD -> 22)
+git merge
+git log --oneline --graph --all (로컬2_main HEAD -> 23, 서버_main HEAD -> 22)
+cat a.txt (host2=>yyy, host1=>xxx 둘 다 기록됨. 특수문자 지우는 건 유저가 직접 편집해야함. 현재 편집 중인 게 있을 때는 git pull 안 됨.)
+nano a.txt
+git add
+git commit -m "24"
+git log --oneline --graph --all (로컬2_main HEAD -> 24, 서버_main HEAD -> 22)
+git push
+
+host1에서
+git pull
+git log --oneline --graph --all (로컬1_main HEAD -> 24, 서버_main HEAD -> 24)
+
+윈도우에서
+git pull
+소스트리 확인
+
+host1에서
+git branch b1 (b1이라는 이름의 브랜치 생성)
+git branch (*붙어있는 브랜치가 작업 중인 브랜치)
+git log --oneline --graph --all (HEAD가 가리키는 브랜치가 작업 중인 브랜치)
+git branch -d b1 (b1 브랜치 삭제)
+git branch  b1
+git checkout b1 (HEAD가 b1을 가리키도록 옮김. 기존 브랜치의 작업 디렉토리를 없애버리고 b1 브랜치의 최신 버전 작업 디렉토리 새로 꺼냄(24버전상태))
+(결국 checkout은 작업디렉토리를 교체하는 것)
+nano c.txt
+git add .
+git commit -m "25"
+git log --oneline --graph --all (로컬1_b1 HEAD -> 25, 로컬1_main HEAD, 서버_main HEAD -> 24)
+nano b.txt
+rm a.txt
+git add
+git commit -m "26"
+git log --oneline --graph --all (로컬1_b1 HEAD -> 26, 로컬1_main HEAD, 서버_main HEAD -> 24)
+git checkout main
+git log --oneline --graph --all (로컬1_main HEAD -> 24, 서버_main HEAD -> 24)
+git merge b1 (현재 브랜치(main)에 다른 브랜치(b1)의 커밋 내용을 합침)
+git log --oneline --graph --all (로컬1_main HEAD, 로컬1_b1 HEAD -> 26, 서버_main HEAD -> 24)
+git branch -d b1
+(branch merge 후엔 해당 branch 꼭 삭제할 것!)
+git log --oneline --graph --all (로컬1_main HEAD -> 26, 서버_main HEAD -> 24)
+git push
+git log --oneline --graph --all (로컬1_main HEAD -> 26, 서버_main HEAD -> 26)
+
+host2에서
+git log --oneline --graph --all (로컬2_main HEAD -> 24, 서버_main HEAD -> 24)
+git branch x1
+nano x.txt
+git add .
+git commit -m "41"
+nano x.txt
+git add .
+git commit -m "42"
+git checkout main
+git merge x1
+git log --oneline --graph --all (로컬2_main HEAD, 로컬2_x1 HEAD -> 42, 서버_main HEAD -> 24)
+git pull ("merge" 작성)
+git log --oneline --graph --all (로컬2_main HEAD -> merge, 로컬2_x1 HEAD -> 42, 서버_main HEAD -> 26)
+git push
+
+윈도우에서
+소스트리에서 pull해서 확인
+
+host1에서
+git pull
+git log --oneline --graph --all (로컬1_main HEAD, 서버_main HEAD -> merge)
+git ls-remote : 로컬과 서버의 헤드가 가리키는 버전의 해시코드보여줌
+git branch -vv : 브랜치의 버전 정보보여줌
+
+갑작스럽게 팀과제
