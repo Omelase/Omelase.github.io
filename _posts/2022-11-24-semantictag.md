@@ -13,6 +13,8 @@ div나 span과 같이 의미가 없는 태그는 태그 이름만 보고는 어�
   
 시맨틱 태그는 HTML5에서 처음 등장한 태그들이다.  
 
+![five](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F99D4353D5A90D2131B)
+
 ![div](https://velog.velcdn.com/images%2Fgil0127%2Fpost%2Fb3a97fa2-7cad-4c27-8011-d78f707f43b0%2F1111111.PNG)
 
 기존에도 div에 class 값을 붙여 스타일링하면 모든 작업이 가능했지만 개발자들은 모든 것을 div로 작성하는 것보다 효율적인 방법을 원했고 어느 부분이 제목이고 어느 부분이 내용인지 한 눈에 이해할 수 있게끔 의미를 가지는 태그가 개발되었다.  
