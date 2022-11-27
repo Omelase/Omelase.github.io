@@ -32,6 +32,12 @@ element : `<p>content</p>` tag와 content를 의미
 p element에 적용한 style이라는 말이 옳다.  
 
 
+### 단락 element
+
+`<p>`는 문단의 시작과 끝에 붙어 단락을 만든다.
+
+`<br>`은 줄바꿈 용도이고 닫기 tag가 없다.
+
 ### 제목 element
 
 `<h1>`은 반드시 한 페이지 당 하나만 있어야 하고,  
@@ -55,4 +61,54 @@ HTML 상용구 (boilerplate)라고도 부르며
 
     - `<title></title>` : browser의 tab에 문서의 이름을 출력한다.  `<head>`안에 씀.  
 - `<body></body>` : 문서의 모든 내용을 담고 있는 element
+
+### 목록 element
+
+```
+<ul>
+    <li></li>
+    <li>
+        <ol>
+            <li></li>
+            <li></li>
+        </ol>
+    </li>
+    <li><b></b></li>
+</ul>
+```
+순서가 없는 목록
+  
+```
+<ul>
+    <li></li>
+    <li>
+        <ul>
+            <li></li>
+            <li></li>
+        </ul>
+    </li>
+    <li><b></b></li>
+</ul>
+```
+순서가 있는 목록
+  
+  
+`<li>`안에 중첩목록을 넣거나 이탤릭체 등 다른 tag를 넣을 수 있다.  
+
+### anchor element
+
+`<a></a>` : hyper-link 생성  
+- `href`속성 : hyper-text reference. 웹페이지를 연결하려면 속성값에 HTTP 프로토콜을 사용해야 함.   http 안 쓰면 파일 프로토콜로 인식.  
+
+### image element
+
+`<img>` : 이미지를 삽입. 닫기 tag가 없다.  
+- src 속성 : source. 속성값에 이미지 경로를 입력.  
+- alt 속성 : alternate. 속성값에 이미지 설명 입력.  
+
+## HTML5
+
+HTML을 정의하는 가장 발전된 표준.  
+
+[HTML의 작동 방식](html.spec.whatwg.org)
 
