@@ -156,7 +156,7 @@ ex) `&hearts;`, `&lt;`, `&#8804;`
 
 ### semantic markup
 
-해당 element 내용의 의미와 관련된 merkup  
+해당 element 내용의 의미와 관련된 markup  
 
 옛날에는 element를 그룹화하기 위해 `<div>`만 엄청나게 썼었다.  
 
@@ -174,5 +174,139 @@ ex) `&hearts;`, `&lt;`, `&#8804;`
 
 새로운 기능은 없지만 markup에 의미를 부여함으로써 더 효율적인 코드가 된다.  
 
+#### main
+
+- 문서의 주요 내용을 나타냄
+
+-  페이지 전반에서 계속 반복되는 내용은 전부 제외하는 게 원칙  
+ex) 사이드바, nav 링크, 저작권 정보, 로고, 검색 양식 등
+
+#### nav
+
+- 페이지에서 내비게이션 링크를 제공하는 것들을 나타냄
+
+- 사이트 내 다른 페이지로 이동하거나 아예 다른 사이트로 이동하는 링크들
+
+- `<body>`안 어디든 넣어도 됨
+
+#### section
+
+- 사이트나 앱의 독립적인 부분을 나타낼 뿐이므로 가장 generic하지만 div보다는 의미론적임
+
+- 문서의 어느 부분이든 section으로 묶을 수 있지만 nav같이 링크가 있는 경우는 nav가 더 알아보기 좋음
+
+#### article
+
+- 문서 내의 독힙적인 부분
+
+- 사실 section과 크게 다를 바 없고 사람마다 다르게 쓰지만 div보다 의미가 있으니까
+
+#### aside
+
+- 문서의 일부일 수도 있고 아닐 수도 있음
+
+- 사이드바나 말풍선 등으로 표현됨
+
+#### header
+
+- 개요. 즉, 내용을 소개함
+
+- nav를 포함할 수도 있고 상단바 메뉴가 header일 수도 있음
+
+#### footer
+
+- 마찬가지로 nav를 포함할 수 있음
+
+- header, footer는 다른 section이나 article에 들어갈 수도 있다.
+
+#### time
+
+- inline element이다.
+
+- 시간 data를 기계가 읽을 수 있게 하기 위해 datetime 속성을 명시해야 함
+
+#### figure
+
+- 보통 독립적인 사진, 그림 등을 나타내지만 caption (부가 설명)이 붙는 경우도 있음
 
 
+### Emmet 사용법
+
+VScode에서 지원하는 유용한 기능이다.  
+이걸 이용하면 빠르게 마크업을 작성할 수 있다.  
+부모요소 안에 자식요소가 있는 계층적 구조를 만들고 싶다면  
+
+```ex
+main>section>h1을 쓰고 탭을 누르면 된다.  
+
+<main>
+    <section>
+        <h1></h1>
+    </section>
+</main>
+```
+수평 관계 element를 만들고 싶다면  
+
+```ex
+h1+h2+h2후 탭  
+
+<h1></h1>
+<h2></h2>
+<h2></h2>
+```
+상위이동 단축키는 ^이다.  
+
+```ex
+div+div>p>span+em^^bq
+
+<div></div>
+<div>
+    <p><span></span><em></em></p>
+</div>
+<blockquote></blockquote>
+```
+*단축키도 있다.  
+
+```ex
+ul>li*5  
+
+<ul>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+</ul>
+```
+
+$단축키는 넘버링하는 역할이다.
+
+```ex
+nav>ul>li*5>a&dollar;
+
+<nav>
+    <ul>
+        <li><a1></a1></li>
+        <li><a2></a2></li>
+        <li><a3></a3></li>
+        <li><a4></a4></li>
+        <li><a5></a5></li>
+    </ul>
+</nav>
+```
+
+```ex
+nav>ul>li*5>a[href=www.&dollar;.com]
+
+<nav>
+    <ul>
+        <li><a href="www.1.com"></a></li>
+        <li><a href="www.2.com"></a></li>
+        <li><a href="www.3.com"></a></li>
+        <li><a href="www.4.com"></a></li>
+        <li><a href="www.5.com"></a></li>
+    </ul>
+</nav>
+```
+
+[emmet단축키모음](https://docs.emmet.io/cheat-sheet/)
