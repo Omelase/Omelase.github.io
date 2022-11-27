@@ -49,10 +49,10 @@ HTML 상용구 (boilerplate)라고도 부르며
 
 `<html></html>` : root element라고 불림. 문서의 최상위 element이다.
 
-    `<head></head>` : meta data element라고도 불림.   페이지 상에 보이지않는 내용을 담고 있다.  
+- `<head></head>` : meta data element라고도 불림.   페이지 상에 보이지않는 내용을 담고 있다.  
     CSS에서 style 속성을 입력하는 공간.  
     CSS 외에도 Javascript, font, icon 등이 들어간다.  
 
-        `<title></title>` : browser의 tab에 문서의 이름을 출력한다.  `<head>`안에 씀.  
-    `<body></body>` : 문서의 모든 내용을 담고 있는 element
+    - `<title></title>` : browser의 tab에 문서의 이름을 출력한다.  `<head>`안에 씀.  
+- `<body></body>` : 문서의 모든 내용을 담고 있는 element
 
