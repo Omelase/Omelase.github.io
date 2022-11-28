@@ -311,4 +311,4 @@ nav>ul>li*5>a[href=www.&dollar;.com]
 </nav>
 ```
 
-[emmet단축키모음](https://docs.emmet.io/cheat-sheet/)
+[emmet 단축커맨드 모음](https://docs.emmet.io/cheat-sheet/)
