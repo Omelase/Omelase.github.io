@@ -222,6 +222,6 @@ git commit -m "커밋명"
 git branch -m local repo브랜치명 (remote repo브랜치명과 통일)
 git push --set-upstream repo별명 repo브랜치명
 유저네임, 토큰 입력
-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
+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
 
 
